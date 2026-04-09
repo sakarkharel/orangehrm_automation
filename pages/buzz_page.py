@@ -20,20 +20,31 @@ class BuzzPage(BasePage):
     def open_buzz(self):
         self.open(self.url)
 
+
     def create_buzz_post(self):
         self.wait_for_element(*self.TEXTAREA)
         self.click(*self.TEXTAREA)
         self.type(*self.TEXTAREA, text="This is my new cat")
+
         self.click(*self.SHARE_PHOTOS_BTN)
+
         file_input = WebDriverWait(self.driver, 10).until(
             EC.presence_of_element_located((By.XPATH, "//input[@type='file']"))
         )
+
         file_path = os.path.abspath("catimages.jpeg")
         file_input.send_keys(file_path)
         WebDriverWait(self.driver, 10).until(
+            EC.presence_of_element_located((By.XPATH, "//img"))
+        )
+
+        share_btn = WebDriverWait(self.driver, 10).until(
             EC.element_to_be_clickable(self.SHARE_BTN)
         )
-        self.click(*self.SHARE_BTN)
+
+        share_btn.click()
+
+
 
     def add_comment(self):
         self.driver.execute_script("window.scrollBy(0, 300);")
@@ -47,3 +58,6 @@ class BuzzPage(BasePage):
         comment_box.send_keys("hey lets catch up")
         comment_box.send_keys(Keys.ENTER)
         time.sleep(5)
+
+
+
