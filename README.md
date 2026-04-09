@@ -38,11 +38,11 @@ uv --version
 ```
 ### Clone the repo 
 ```bash
-git clone https://github.com/sakarkharel/saucedemo_qa
+git clone https://github.com/sakarkharel/orangehrm_automation.git
 ```
 
 ```bash
-cd saucedemo_qa
+cd orangehrm_automation
 ```
 
 ### Sync the dependencies 
